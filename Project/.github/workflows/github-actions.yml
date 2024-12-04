@@ -1,0 +1,109 @@
+# TODO: Define the Workflow Name 
+name: Project CI/CD Pipeline
+
+# TROUBLESHOOT WHY PIPELINE NOT RUNNING IN ACTIONS TAB
+
+
+# TODO: Define triggers for the workflow
+on:
+  push:
+    branches: 
+      - master
+  pull_request:
+    branches: 
+      - master
+
+jobs:
+  # TODO: Define a job for building and testing the frontend
+  frontend:
+    runs-on: ubuntu-latest
+    steps:
+      # TODO: Checkout code
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      # TODO: Setup Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14' #frontend dockerfile using node:14-alpine
+      
+      # TODO: Install dependencies ; navigate to frontend folder 
+      - name: Install dependencies 
+        run: |
+          cd frontend 
+          npm install 
+      
+      # TODO: Run tests 
+      - name: Run tests
+        run: | 
+          cd frontend
+          npm test
+      
+      # TODO: Build the React app
+      - name: Build React app
+        run: |
+          cd frontend
+          npm run build
+
+  # TODO: Define a job for building and testing the backend
+  backend:
+    runs-on: ubuntu-latest
+    steps:
+      # TODO: Checkout code
+      - uses: actions/checkout@v2
+      
+      # TODO: Setup Python
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9' #backend dockerfile using python:3.9-slim
+
+      # TODO: Install dependencies
+      - name: Install dependencies
+        run: | 
+          cd backend
+          pip install -r requirements.txt
+      
+      # TODO: Run tests
+      - name: Run test
+        run: | 
+          cd backend
+          pytest
+
+  # TODO: Define a job for building and pushing Docker images
+  docker:
+    # Run this job only when 'frontend' & 'backend' stages are sucessfully completed
+    needs: [frontend, backend]
+    runs-on: ubuntu-latest
+    steps:
+      # TODO: Checkout code
+      - uses: actions/checkout@v2
+      
+      # TODO: Setup Docker
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v3
+      
+      # TODO: Build frontend Docker image
+      - name: Build Docker frontend image
+        run: docker build -t app-frontend:latest ./frontend 
+      
+      # TODO: Build backend Docker image
+      - name: Build Docker backend image
+        run: docker build -t app-backend:latest ./backend 
+
+      # TODO: Push images to Docker Hub (if on main branch)
+      #configured secrets on github acct for access
+      - name: Push images to Docker Hub
+        if: github.ref == 'refs/heads/master'
+        run: |
+          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+          docker push app-frontend:latest
+          docker push app-backend:latest
+
+  # # OPTIONAL: Define a deployment job (if applicable) HAVING ISSUES WITH RENDER.COM; TESTING A PUSH FIRST
+  # deploy:
+  #   needs: docker
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     # TODO: Add deployment steps
