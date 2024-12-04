@@ -154,7 +154,7 @@ The purpose of this file is to set up the backend environment for the applicatio
 - the calculator frontend could have more improved ui, especially with the calculation display & answer (although it'sfine for what it needs to do) 
 - also there could be functionality for brackets to do more complex calculations, (ex: 5x5+3 currently gives 8; it does not store operations in progress like a scientific calc would)
 
-<!-- #TESTING CHANGES FOR PIPELINE -->
+<!-- #TESTING CHANGES FOR PIPELINE PT2 -->
 
 
 
