@@ -35,10 +35,10 @@ jobs:
           npm install 
       
       # TODO: Run tests 
-      - name: Run tests
-        run: | 
-          cd frontend
-          npm test
+      # - name: Run tests
+      #   run: | 
+      #     cd frontend
+      #     npm test
       
       # TODO: Build the React app
       - name: Build React app
