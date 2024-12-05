@@ -66,6 +66,10 @@ The purpose of this file is to set up the backend environment for the applicatio
 - When I ran those commands, they both ran smoothly and were accesible from their respective browser urls; BACKEND:(http://localhost:5001/api/test) & FRONTEND: (http://localhost:3000)
 - The calculator app is working; tested add(), multiply(), subtract(), and division() funtionality.
 
+**LINKS TO PUSHED DOCKER IMAGES ON MY ACCOUNT**
+    - https://hub.docker.com/r/carmahn/frontend
+    -https://hub.docker.com/r/carmahn/backend 
+
 ### Docker Compose YAML Configuration
 
 **Break down your `docker-compose.yml` file:**
@@ -97,13 +101,10 @@ The purpose of this file is to set up the backend environment for the applicatio
 
 **Use this section to document your automated build and deployment process.**
 
-- everytime new code is pushed to the master branch of the repo, the pipeline should be triggered. 
+- everytime new code is pushed to the main branch of the repo, the pipeline should be triggered. 
 - build stage builds the frontend and backend images
-- test stage ensures both parts of the application (front/backend) are working as they should be; npm test for the front and pytest for the back
-
-
-<!-- NOTE: It is not compulsory to include detailed explanations, writing succint concise points would also sufice. Make sure maintain readability and clarity. -->
-
+- test stage ensures the application (backend) is working as it should be; pytest for the back
+- push images to my docker account
 
 ### CI/CD Pipeline (YAML Configuration)
 
