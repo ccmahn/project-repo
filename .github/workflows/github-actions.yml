@@ -79,7 +79,7 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-          
+
       # TODO: Build frontend Docker image
       - name: Build Docker Image
         run: |
@@ -99,45 +99,3 @@ jobs:
         if: github.ref == 'refs/heads/main'
         run: |
           docker push carmahn/backend:${{ github.sha }}
-  # # TODO: Define a job for building and pushing Docker images
-  # docker:
-  #   # Run this job only when 'frontend' & 'backend' stages are sucessfully completed
-  #   needs: [frontend, backend]
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     # TODO: Checkout code
-  #     - uses: actions/checkout@v2
-      
-  #     # TODO: Setup Docker
-  #     - name: Set up Docker
-  #       uses: docker/setup-buildx-action@v2
-
-  #     - name: Set up Docker Hub credentials
-  #       uses: docker/login-action@v2
-  #       with:
-  #         username: ${{ secrets.DOCKER_USERNAME }}
-  #         password: ${{ secrets.DOCKER_PASSWORD }}
-      
-  #     # TODO: Build frontend Docker image
-  #     - name: Build Docker frontend image
-  #       run: docker build -t app-frontend:latest ./frontend 
-      
-  #     # TODO: Build backend Docker image
-  #     - name: Build Docker backend image
-  #       run: docker build -t app-backend:latest ./backend 
-
-  #     # TODO: Push images to Docker Hub (if on main branch)
-  #     #configured secrets on github acct for access
-
-  #     - name: Push images to Docker Hub
-  #       if: github.ref == 'refs/heads/main'
-  #       run: |
-  #         docker push app-frontend:${{ github.sha }}
-  #         docker push app-backend:${{ github.sha }}
-
-  # # OPTIONAL: Define a deployment job (if applicable) HAVING ISSUES WITH RENDER.COM; TESTING A PUSH FIRST
-  # deploy:
-  #   needs: docker
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     # TODO: Add deployment steps

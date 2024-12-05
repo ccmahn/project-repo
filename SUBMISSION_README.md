@@ -142,6 +142,7 @@ The purpose of this file is to set up the backend environment for the applicatio
     - I learned how to properly use docker-compose; I was able to configure an image/container relatiey easily when I was just using "one folder" like in the week2 exercise, but I find it much more concise to bundle the frontend/backend together. 
 
 - The indentation in my github-actions file was off, so I had to correct those to help the pipeline run 
+- I also had to re-arrange the order of my commands in the .yml file, also changing the was I was accessing the login variables in order to have them pass the pipieline
 
 
 ### Future Improvements
@@ -152,10 +153,8 @@ The purpose of this file is to set up the backend environment for the applicatio
 **Use this section to brainstorm ways to enhance your project.**
 
 - more tests could be added to the pipeline to further prevent errors/ catch them early
-- the calculator frontend could have more improved ui, especially with the calculation display & answer (although it'sfine for what it needs to do) 
+- the calculator frontend could have more improved ui, especially with the calculation display & answer (although it's fine for what it needs to do) 
 - also there could be functionality for brackets to do more complex calculations, (ex: 5x5+3 currently gives 8; it does not store operations in progress like a scientific calc would)
-
-<!-- #TESTING CHANGES FOR PIPELINE PT2 -->
 
 
 
